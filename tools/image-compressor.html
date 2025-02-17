@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Text to Speech - Human-Like Voice</title>
+    <title>AI Text to Speech - Human Voice</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
         textarea { width: 90%; height: 150px; padding: 10px; font-size: 16px; }
@@ -27,24 +27,29 @@
                 return;
             }
 
-            let apiKey = "YOUR_GOOGLE_API_KEY"; // Replace with your API Key
-            let url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
+            let apiKey = "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"; // Replace with your OpenAI API Key
+            let url = "https://api.openai.com/v1/audio/speech";
 
             let requestBody = {
-                input: { text: text },
-                voice: { languageCode: "en-US", name: "en-US-Wavenet-D", ssmlGender: "MALE" },
-                audioConfig: { audioEncoding: "MP3" }
+                model: "tts-1",
+                input: text,
+                voice: "alloy"
             };
 
             let response = await fetch(url, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`
+                },
                 body: JSON.stringify(requestBody)
             });
 
-            let data = await response.json();
+            let data = await response.blob();
+            let audioUrl = URL.createObjectURL(data);
+            
             let audioPlayer = document.getElementById("audio-player");
-            audioPlayer.src = "data:audio/mp3;base64," + data.audioContent;
+            audioPlayer.src = audioUrl;
             audioPlayer.style.display = "block";
             audioPlayer.play();
         }
