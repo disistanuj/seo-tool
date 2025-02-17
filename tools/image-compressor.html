@@ -3,94 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convert text to speech with natural AI voices for free. Download and listen to your text with our online text-to-speech converter.">
-    <meta name="keywords" content="text to speech, AI voice generator, TTS online, free text reader, convert text to voice">
-    <meta name="author" content="Your Website Name">
-    <title>Text to Speech (TTS) - Free Online AI Voice Generator</title>
+    <title>AI Text to Speech - Human-Like Voice</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background: #f4f4f4;
-        }
-        h2 {
-            color: #007bff;
-        }
-        textarea {
-            width: 90%;
-            height: 150px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        select, button {
-            padding: 10px;
-            font-size: 16px;
-            margin: 5px;
-        }
-        button {
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        textarea { width: 90%; height: 150px; padding: 10px; font-size: 16px; }
+        button { padding: 10px; font-size: 16px; background: #007bff; color: white; border: none; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
-    <h2>Text to Speech (TTS) - Free AI Voice Generator</h2>
-    <p>Type or paste text below and convert it into speech instantly.</p>
-
+    <h2>AI Text to Speech (Ultra-Realistic Human Voice)</h2>
     <textarea id="text-input" placeholder="Enter text here..."></textarea>
     <br>
-    <label for="voice-select">Select Voice:</label>
-    <select id="voice-select"></select>
-    <br>
-    <button onclick="speakText()">▶ Play</button>
-    <button onclick="stopSpeech()">⏹ Stop</button>
+    <button onclick="convertTextToSpeech()">🎤 Convert to Speech</button>
+    <br><br>
+    <audio id="audio-player" controls style="display:none;"></audio>
 
     <script>
-        let speechSynthesisUtterance;
-        function populateVoices() {
-            let voices = speechSynthesis.getVoices();
-            let voiceSelect = document.getElementById("voice-select");
-            voiceSelect.innerHTML = "";
-            voices.forEach((voice, index) => {
-                let option = document.createElement("option");
-                option.value = index;
-                option.textContent = voice.name + " (" + voice.lang + ")";
-                voiceSelect.appendChild(option);
-            });
-        }
-
-        function speakText() {
+        async function convertTextToSpeech() {
             let text = document.getElementById("text-input").value;
-            let voices = speechSynthesis.getVoices();
-            let selectedVoice = voices[document.getElementById("voice-select").value];
-
             if (!text.trim()) {
-                alert("Please enter some text to convert to speech.");
+                alert("Please enter text!");
                 return;
             }
 
-            speechSynthesis.cancel(); // Stop previous speech
-            speechSynthesisUtterance = new SpeechSynthesisUtterance(text);
-            speechSynthesisUtterance.voice = selectedVoice;
-            speechSynthesis.speak(speechSynthesisUtterance);
-        }
+            let apiKey = "YOUR_GOOGLE_API_KEY"; // Replace with your API Key
+            let url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`;
 
-        function stopSpeech() {
-            speechSynthesis.cancel();
-        }
+            let requestBody = {
+                input: { text: text },
+                voice: { languageCode: "en-US", name: "en-US-Wavenet-D", ssmlGender: "MALE" },
+                audioConfig: { audioEncoding: "MP3" }
+            };
 
-        // Populate voices when voices are loaded
-        speechSynthesis.onvoiceschanged = populateVoices;
+            let response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestBody)
+            });
+
+            let data = await response.json();
+            let audioPlayer = document.getElementById("audio-player");
+            audioPlayer.src = "data:audio/mp3;base64," + data.audioContent;
+            audioPlayer.style.display = "block";
+            audioPlayer.play();
+        }
     </script>
 </body>
 </html>
