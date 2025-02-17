@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEO Analysis Tool</title>
+    <meta name="description" content="Free Online Tools - SEO, PDF, Text, Image, and Developer tools">
+    <meta name="keywords" content="online tools, SEO tools, PDF converter, image tools, text tools">
+    <meta name="author" content="Your Website Name">
+    <title>Online Tools - Free SEO, PDF, Image & Text Tools</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>AI-Powered SEO Analyzer</h2>
-<input type="text" id="websiteUrl" placeholder="Enter website URL">
-<button onclick="analyzeSEO()">Analyze</button>
-<div id="result"></div>
 
-<script src="seo-analyzer.js"></script>
-    <h1>Welcome to the SEO Analysis Tool</h1>
-    <p>Enter a website URL to analyze its SEO performance.</p>
+    <header>
+        <h1>Best Free Online Tools</h1>
+        <p>100+ SEO, PDF, Image, and Text tools at your fingertips.</p>
+    </header>
+
+    <section id="tools-container">
+        <div class="tool" onclick="loadTool('word-counter')">Word Counter</div>
+        <div class="tool" onclick="loadTool('text-case-converter')">Text Case Converter</div>
+        <div class="tool" onclick="loadTool('image-compressor')">Image Compressor</div>
+        <div class="tool" onclick="loadTool('qr-code-generator')">QR Code Generator</div>
+        <div class="tool" onclick="loadTool('json-formatter')">JSON Formatter</div>
+        <div class="tool" onclick="loadTool('currency-converter')">Currency Converter</div>
+        <div class="tool" onclick="loadTool('pdf-to-word')">PDF to Word</div>
+    </section>
+
+    <iframe id="tool-frame" src="" style="display: none;"></iframe>
+
+    <script src="script.js"></script>
 </body>
 </html>
