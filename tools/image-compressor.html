@@ -3,56 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Text to Speech - Human Voice</title>
+    <title>AI Text to Speech (Human Voice)</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
-        textarea { width: 90%; height: 150px; padding: 10px; font-size: 16px; }
-        button { padding: 10px; font-size: 16px; background: #007bff; color: white; border: none; cursor: pointer; margin: 5px; }
-        button:hover { background: #0056b3; }
+        iframe { width: 100%; height: 500px; border: none; margin-top: 20px; }
     </style>
 </head>
 <body>
     <h2>AI Text to Speech (Ultra-Realistic Human Voice)</h2>
-    <textarea id="text-input" placeholder="Enter text here..."></textarea>
-    <br>
-    <button onclick="convertTextToSpeech()">🎤 Convert to Speech</button>
-    <br><br>
-    <audio id="audio-player" controls style="display:none;"></audio>
-
-    <script>
-        async function convertTextToSpeech() {
-            let text = document.getElementById("text-input").value;
-            if (!text.trim()) {
-                alert("Please enter text!");
-                return;
-            }
-
-            let apiKey = "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"; // Replace with your OpenAI API Key
-            let url = "https://api.openai.com/v1/audio/speech";
-
-            let requestBody = {
-                model: "tts-1",
-                input: text,
-                voice: "alloy"
-            };
-
-            let response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`
-                },
-                body: JSON.stringify(requestBody)
-            });
-
-            let data = await response.blob();
-            let audioUrl = URL.createObjectURL(data);
-            
-            let audioPlayer = document.getElementById("audio-player");
-            audioPlayer.src = audioUrl;
-            audioPlayer.style.display = "block";
-            audioPlayer.play();
-        }
-    </script>
+    <p>Use the embedded tool below to generate AI-powered human-like speech.</p>
+    
+    <iframe src="https://tetyys.com/SAPI4/" title="Text to Speech"></iframe>
+    
+    <p>For advanced AI voices, check out <a href="https://elevenlabs.io" target="_blank">ElevenLabs</a>.</p>
 </body>
 </html>
