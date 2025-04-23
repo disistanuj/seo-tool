@@ -4,25 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMI Calculator - Ultimate Tools</title>
-    <meta name="description" content="Calculate your loan EMI (Equated Monthly Installment) easily with our free EMI calculator. Plan your loan repayments and understand the total interest payable.">
-    <meta name="keywords" content="EMI calculator, loan calculator, home loan EMI, car loan EMI, monthly installment calculator">
+    <meta name="description" content="Calculate your loan EMI easily with our beautiful, user-friendly EMI calculator. Get instant results with visual charts, payment schedule, and detailed breakdown.">
+    <meta name="keywords" content="EMI calculator, loan calculator, home loan EMI, car loan EMI, user friendly calculator">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --accent-color: #f72585;
-            --background-color: #f8f9fa;
+            --primary-color: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary-color: #14b8a6;
+            --accent-color: #f43f5e;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --background-color: #f9fafb;
             --card-color: #ffffff;
-            --text-color: #333333;
-            --text-light: #666666;
+            --text-color: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --border-radius-sm: 8px;
             --border-radius: 12px;
-            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --border-radius-lg: 16px;
+            --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --transition: all 0.3s ease;
         }
 
@@ -30,7 +44,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
@@ -39,15 +53,21 @@
             line-height: 1.6;
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
         /* Navigation */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: #ffffff;
+            color: var(--text-color);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .navbar {
@@ -60,17 +80,24 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: white;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--primary-dark);
         }
 
         .logo i {
             margin-right: 10px;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -79,20 +106,22 @@
         }
 
         .nav-links li {
-            margin-left: 20px;
+            margin-left: 5px;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
             padding: 10px 15px;
-            border-radius: 30px;
+            border-radius: 8px;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .burger {
@@ -103,126 +132,237 @@
         .burger div {
             width: 25px;
             height: 3px;
-            background-color: white;
+            background-color: var(--text-color);
             margin: 5px;
             transition: var(--transition);
         }
 
         /* Tool Hero Section */
         .tool-hero {
-            background: linear-gradient(to right, rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9));
-            color: white;
-            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.1));
+            color: var(--text-color);
+            padding: 80px 20px;
             text-align: center;
+        }
+
+        .tool-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .tool-hero h1 {
             font-size: 2.8rem;
             margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .tool-hero p {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto 20px;
             font-size: 1.1rem;
+            color: var(--text-light);
         }
 
         /* Tool Container */
         .tool-container {
             max-width: 1000px;
-            margin: -50px auto 80px;
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
         }
 
         .tool-card {
             background-color: var(--card-color);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-lg);
             box-shadow: var(--box-shadow);
-            padding: 40px;
             margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .tool-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tool-header-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1.5rem;
+        }
+
+        .tool-header-text h2 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .tool-header-text p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .tool-body {
+            padding: 30px;
         }
 
         .tool-section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 25px;
             text-align: center;
         }
 
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: var(--text-color);
+            font-size: 0.95rem;
         }
 
-        .form-group input[type="number"],
-        .form-group input[type="range"],
-        .form-group select {
+        .form-control {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
+            background-color: #f8fafc;
+            color: var(--text-color);
         }
 
-        .form-group input[type="number"]:focus,
-        .form-group select:focus {
+        .form-control:focus {
             border-color: var(--primary-color);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
         .range-container {
-            display: flex;
-            align-items: center;
+            padding: 10px 0;
         }
 
-        .range-container input[type="range"] {
-            flex-grow: 1;
-            margin-right: 15px;
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 10px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            outline: none;
+            margin: 15px 0;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .range-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .range-value {
-            min-width: 80px;
-            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        .current-value {
             background-color: var(--primary-color);
             color: white;
+            padding: 5px 15px;
             border-radius: 20px;
-            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .input-group {
+            display: flex;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
             font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .input-group .form-control {
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
 
         .btn-calculate {
             display: block;
             width: 100%;
-            padding: 15px;
-            background-color: var(--accent-color);
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 50px;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
         .btn-calculate:hover {
-            background-color: #e5177b;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-dark));
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
         }
 
         /* Results Section */
         .results-section {
+            padding: 30px;
+            background-color: #f8fafc;
+            border-top: 1px solid var(--border-color);
             display: none;
-            margin-top: 40px;
         }
 
         .results-header {
@@ -232,61 +372,144 @@
 
         .results-header h3 {
             font-size: 1.8rem;
-            color: var(--primary-color);
+            color: var(--text-color);
             margin-bottom: 10px;
         }
 
+        .results-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .monthly-emi {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 30px;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 40px;
             text-align: center;
+            line-height: 1.2;
+        }
+
+        .monthly-emi span {
+            display: block;
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 400;
+            margin-top: 5px;
         }
 
         .loan-summary {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .summary-item {
             flex-basis: calc(33.333% - 20px);
-            background-color: #f0f4ff;
-            padding: 20px;
+            background-color: white;
+            padding: 25px;
             border-radius: var(--border-radius);
             margin-bottom: 20px;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .summary-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+
+        .summary-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.4rem;
+        }
+
+        .bg-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        }
+
+        .bg-secondary {
+            background: linear-gradient(135deg, var(--secondary-color), #0d9488);
+        }
+
+        .bg-accent {
+            background: linear-gradient(135deg, var(--accent-color), #be123c);
         }
 
         .summary-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
             margin: 10px 0 5px;
         }
 
         .summary-label {
             color: var(--text-light);
+            font-size: 0.95rem;
         }
 
-        /* Amortization Table */
+        /* Chart Section */
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            height: 250px;
+            position: relative;
+        }
+
+        /* Amortization Section */
         .amortization-section {
             margin-top: 40px;
         }
 
         .amortization-toggle {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 50px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             display: flex;
             align-items: center;
             margin: 0 auto;
+            transition: var(--transition);
+        }
+
+        .amortization-toggle:hover {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .amortization-toggle i {
@@ -300,8 +523,11 @@
 
         .amortization-table-container {
             display: none;
-            margin-top: 20px;
-            overflow-x: auto;
+            margin-top: 30px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
         }
 
         .amortization-table {
@@ -310,105 +536,221 @@
         }
 
         .amortization-table th, .amortization-table td {
-            padding: 12px 15px;
+            padding: 15px;
             text-align: right;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .amortization-table th {
-            background-color: #f0f4ff;
+            background-color: #f1f5f9;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-color);
+            text-align: center;
         }
 
         .amortization-table tr:hover {
-            background-color: #f8f9fa;
+            background-color: #f8fafc;
         }
 
-        /* Chart Section */
-        .chart-section {
-            margin-top: 40px;
-        }
-
-        .chart-container {
-            height: 300px;
+        .amortization-controls {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
-            position: relative;
+            gap: 10px;
+        }
+
+        .table-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 0 5px;
+        }
+
+        .page-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .page-btn-nav {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+
+        .page-btn-nav:hover {
+            background-color: #f1f5f9;
+        }
+
+        .page-btn-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-print {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-print:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-share {
+            background-color: white;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-share:hover {
+            background-color: #f1f5f9;
+        }
+
+        .btn-save {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-save:hover {
+            background-color: #0d9488;
         }
 
         /* Other Tools Section */
         .other-tools {
-            margin-top: 60px;
+            margin-top: 80px;
         }
 
-        .other-tools h3 {
+        .other-tools-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-size: 1.8rem;
             color: var(--text-color);
         }
 
-        .tools-grid {
+        .tools-slider {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 25px;
+            padding: 10px 5px;
         }
 
         .mini-tool-card {
-            background-color: var(--card-color);
+            background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 20px;
+            padding: 25px 20px;
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
         }
 
         .mini-tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--primary-light);
         }
 
         .mini-tool-icon {
             width: 60px;
             height: 60px;
-            background-color: #f0f4ff;
-            border-radius: 50%;
+            border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .mini-tool-icon i {
+            margin: 0 auto 20px;
+            color: white;
             font-size: 1.5rem;
-            color: var(--primary-color);
         }
 
         .mini-tool-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 10px;
-            color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .mini-tool-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            min-height: 60px;
         }
 
         .mini-tool-link {
-            color: var(--accent-color);
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .mini-tool-link i {
+            margin-left: 5px;
             transition: var(--transition);
         }
 
         .mini-tool-link:hover {
-            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        .mini-tool-link:hover i {
+            transform: translateX(5px);
         }
 
         /* Footer */
         footer {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 60px 0 20px;
+            background-color: #1e293b;
+            color: #f1f5f9;
+            padding: 80px 0 30px;
         }
 
         .footer-content {
@@ -426,6 +768,8 @@
             font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 20px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
         }
 
         .footer-logo i {
@@ -434,14 +778,18 @@
         }
 
         .footer-about {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             max-width: 300px;
+            color: #cbd5e1;
+            line-height: 1.7;
         }
 
         .footer-links h4, .footer-contact h4 {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-size: 1.3rem;
+            color: white;
         }
 
         .footer-links h4:after, .footer-contact h4:after {
@@ -449,9 +797,9 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
-            background-color: var(--accent-color);
+            background-color: var(--primary-color);
         }
 
         .footer-links ul {
@@ -459,85 +807,172 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: #ccc;
+            color: #cbd5e1;
             text-decoration: none;
             transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 0.7rem;
         }
 
         .footer-links a:hover {
             color: white;
-            padding-left: 5px;
+            transform: translateX(5px);
         }
 
         .contact-info {
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
 
         .contact-info i {
-            margin-right: 10px;
+            margin-right: 15px;
             font-size: 1.2rem;
-            color: var(--accent-color);
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .contact-info p {
+            color: #cbd5e1;
+            line-height: 1.6;
         }
 
         .social-icons {
             display: flex;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .social-icons a {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background-color: #333;
+            background-color: #334155;
             color: white;
-            margin-right: 10px;
+            margin-right: 12px;
             transition: var(--transition);
+            font-size: 1.1rem;
         }
 
         .social-icons a:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 40px;
-            margin-top: 40px;
-            border-top: 1px solid #333;
+            margin-top: 60px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .tooltip i {
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            text-align: left;
+            border-radius: 8px;
+            padding: 10px 15px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1e293b transparent transparent transparent;
         }
 
         /* Responsive Styles */
+        @media (max-width: 992px) {
+            .loan-summary {
+                flex-direction: column;
+            }
+            
+            .summary-item {
+                flex-basis: 100%;
+            }
+
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
-                position: absolute;
+                position: fixed;
                 right: 0;
-                height: calc(100vh - 80px);
-                top: 80px;
-                background-color: var(--primary-color);
+                height: 100vh;
+                top: 0;
+                background-color: white;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
+                justify-content: center;
+                width: 70%;
                 transform: translateX(100%);
                 transition: transform 0.5s ease-in;
-                z-index: 1;
+                z-index: 1001;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
             }
 
             .nav-links li {
-                margin: 20px 0;
+                margin: 15px 0;
             }
 
             .burger {
                 display: block;
+                z-index: 1002;
             }
 
             .nav-active {
@@ -556,31 +991,82 @@
                 transform: rotate(45deg) translate(-5px, -6px);
             }
 
-            .tool-card {
-                padding: 25px;
+            .tool-hero h1 {
+                font-size: 2.2rem;
             }
 
-            .summary-item {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-wrap: wrap;
+            }
+
+            .btn-action {
                 flex-basis: 100%;
+                justify-content: center;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
             }
         }
 
         @media (max-width: 480px) {
             .tool-hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
-            .tool-section-title {
-                font-size: 1.5rem;
+            .tool-hero p {
+                font-size: 1rem;
+            }
+
+            .tool-header-text h2 {
+                font-size: 1.3rem;
             }
 
             .monthly-emi {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .summary-value {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
+
+            .tool-body {
+                padding: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
     </style>
 </head>
@@ -594,7 +1080,9 @@
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../index.html#tools">Tools</a></li>
-                <li><a href="../index.html#about">About Us</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#testimonials">Testimonials</a></li>
+                <li><a href="../index.html#faq">FAQ</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
             </ul>
             <div class="burger">
@@ -603,82 +1091,163 @@
                 <div class="line3"></div>
             </div>
         </nav>
+        <div class="overlay"></div>
     </header>
 
     <!-- Tool Hero Section -->
     <section class="tool-hero">
-        <h1>EMI Calculator</h1>
-        <p>Calculate your Equated Monthly Installment (EMI) for any loan amount, interest rate, and loan tenure. Get detailed breakdowns of your loan repayment schedule.</p>
+        <div class="tool-hero-content">
+            <h1>EMI Calculator</h1>
+            <p>Calculate your loan EMI (Equated Monthly Installment) with our beautiful, user-friendly calculator. Get detailed payment breakdowns, amortization schedules, and visual charts.</p>
+        </div>
     </section>
 
     <!-- Tool Container -->
     <div class="tool-container">
         <!-- EMI Calculator Card -->
         <div class="tool-card">
-            <h2 class="tool-section-title">Calculate Your EMI</h2>
+            <div class="tool-header">
+                <div class="tool-header-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="tool-header-text">
+                    <h2>Loan EMI Calculator</h2>
+                    <p>Enter your loan details to calculate your monthly payment</p>
+                </div>
+            </div>
             
-            <form id="emi-form">
-                <div class="form-group">
-                    <label for="loan-amount">Loan Amount (₹)</label>
-                    <input type="number" id="loan-amount" min="1000" step="1000" value="1000000" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="interest-rate">Interest Rate (% per annum)</label>
-                    <div class="range-container">
-                        <input type="range" id="interest-slider" min="1" max="30" step="0.1" value="10">
-                        <div class="range-value" id="interest-value">10%</div>
+            <div class="tool-body">
+                <form id="emi-form">
+                    <div class="form-grid">
+                        <!-- Loan Amount -->
+                        <div class="form-group">
+                            <label for="loan-amount">Loan Amount 
+                                <div class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltip-text">The principal amount you wish to borrow from the bank or financial institution.</span>
+                                </div>
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-text">$</div>
+                                <input type="number" id="loan-amount" class="form-control" min="1000" step="1000" value="100000" required>
+                            </div>
+                            <div class="range-container">
+                                <input type="range" id="loan-slider" class="range-slider" min="10000" max="5000000" step="10000" value="100000">
+                                <div class="current-value" id="loan-display">$100,000</div>
+                            </div>
+                            <div class="range-value">
+                                <span>$10,000</span>
+                                <span>$5,000,000</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Interest Rate -->
+                        <div class="form-group">
+                            <label for="interest-rate">Interest Rate 
+                                <div class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltip-text">The annual interest rate for your loan. This is the cost of borrowing expressed as a percentage.</span>
+                                </div>
+                            </label>
+                            <div class="input-group">
+                                <input type="number" id="interest-rate" class="form-control" min="0.1" max="30" step="0.1" value="8" required>
+                                <div class="input-group-text">% p.a.</div>
+                            </div>
+                            <div class="range-container">
+                                <input type="range" id="interest-slider" class="range-slider" min="0.1" max="30" step="0.1" value="8">
+                                <div class="current-value" id="interest-display">8%</div>
+                            </div>
+                            <div class="range-value">
+                                <span>0.1%</span>
+                                <span>30%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Loan Tenure -->
+                        <div class="form-group">
+                            <label for="loan-tenure">Loan Tenure 
+                                <div class="tooltip">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span class="tooltip-text">The duration for which you take the loan. You can specify in years or months.</span>
+                                </div>
+                            </label>
+                            <div class="input-group">
+                                <input type="number" id="loan-tenure" class="form-control" min="1" max="30" value="20" required>
+                                <select id="loan-tenure-type" class="form-control" style="border-left: none; border-radius: 0 var(--border-radius) var(--border-radius) 0;">
+                                    <option value="year">Years</option>
+                                    <option value="month">Months</option>
+                                </select>
+                            </div>
+                            <div class="range-container">
+                                <input type="range" id="tenure-slider" class="range-slider" min="1" max="30" value="20">
+                                <div class="current-value" id="tenure-display">20 years</div>
+                            </div>
+                            <div class="range-value">
+                                <span>1 year</span>
+                                <span>30 years</span>
+                            </div>
+                        </div>
                     </div>
-                    <input type="number" id="interest-rate" min="1" max="30" step="0.1" value="10" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="loan-tenure">Loan Tenure</label>
-                    <div class="range-container">
-                        <input type="range" id="tenure-slider" min="1" max="30" value="15">
-                        <div class="range-value" id="tenure-value">15 years</div>
-                    </div>
-                    <select id="loan-tenure-type">
-                        <option value="year">Years</option>
-                        <option value="month">Months</option>
-                    </select>
-                    <input type="number" id="loan-tenure" min="1" max="30" value="15" required>
-                </div>
-                
-                <button type="submit" class="btn-calculate">Calculate EMI</button>
-            </form>
+                    
+                    <button type="submit" class="btn-calculate">
+                        <i class="fas fa-calculator"></i> Calculate EMI
+                    </button>
+                </form>
+            </div>
             
             <!-- Results Section -->
             <div class="results-section" id="results-section">
                 <div class="results-header">
-                    <h3>Loan Summary</h3>
-                    <p>Here's a breakdown of your loan details</p>
+                    <h3>Your Loan Summary</h3>
+                    <p>Here's a comprehensive breakdown of your loan details</p>
                 </div>
                 
                 <div class="monthly-emi">
-                    ₹ <span id="monthly-emi-value">10,746</span>
+                    $<span id="monthly-emi-value">836</span>
+                    <span>Monthly Payment (EMI)</span>
                 </div>
                 
                 <div class="loan-summary">
                     <div class="summary-item">
-                        <div class="summary-value" id="principal-amount">₹ 10,00,000</div>
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="summary-value" id="principal-amount">$100,000</div>
                         <div class="summary-label">Principal Amount</div>
                     </div>
                     
                     <div class="summary-item">
-                        <div class="summary-value" id="total-interest">₹ 9,34,235</div>
+                        <div class="summary-icon bg-accent">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="summary-value" id="total-interest">$100,710</div>
                         <div class="summary-label">Total Interest</div>
                     </div>
                     
                     <div class="summary-item">
-                        <div class="summary-value" id="total-amount">₹ 19,34,235</div>
+                        <div class="summary-icon bg-secondary">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="summary-value" id="total-amount">$200,710</div>
                         <div class="summary-label">Total Amount</div>
                     </div>
                 </div>
                 
                 <!-- Chart Section -->
-                <div class="chart-section">
-                    <canvas id="loan-chart"></canvas>
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h4 class="chart-title">Loan Breakup</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="loan-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h4 class="chart-title">Year-by-Year Payment</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="payment-chart"></canvas>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Amortization Section -->
@@ -691,7 +1260,8 @@
                         <table class="amortization-table" id="amortization-table">
                             <thead>
                                 <tr>
-                                    <th>Month</th>
+                                    <th>Payment No.</th>
+                                    <th>EMI</th>
                                     <th>Principal</th>
                                     <th>Interest</th>
                                     <th>Balance</th>
@@ -701,46 +1271,67 @@
                                 <!-- Will be filled by JavaScript -->
                             </tbody>
                         </table>
+                        
+                        <div class="table-pagination" id="table-pagination">
+                            <!-- Will be filled by JavaScript -->
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-action btn-print" id="btn-print">
+                        <i class="fas fa-print"></i> Print Results
+                    </button>
+                    <button class="btn-action btn-share" id="btn-share">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                    <button class="btn-action btn-save" id="btn-save">
+                        <i class="fas fa-download"></i> Save as PDF
+                    </button>
                 </div>
             </div>
         </div>
         
         <!-- Other Tools Section -->
         <div class="other-tools">
-            <h3>Other Useful Tools</h3>
+            <h3 class="other-tools-title">Other Useful Financial Tools</h3>
             
-            <div class="tools-grid">
+            <div class="tools-slider">
                 <div class="mini-tool-card">
-                    <div class="mini-tool-icon">
+                    <div class="mini-tool-icon bg-secondary">
                         <i class="fas fa-exchange-alt"></i>
                     </div>
                     <h4 class="mini-tool-title">Currency Converter</h4>
-                    <a href="currency-converter.html" class="mini-tool-link">Use Tool →</a>
+                    <p class="mini-tool-description">Convert between currencies with real-time exchange rates</p>
+                    <a href="currency-converter.html" class="mini-tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="mini-tool-card">
-                    <div class="mini-tool-icon">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <h4 class="mini-tool-title">BMI Calculator</h4>
-                    <a href="bmi-calculator.html" class="mini-tool-link">Use Tool →</a>
-                </div>
-                
-                <div class="mini-tool-card">
-                    <div class="mini-tool-icon">
+                    <div class="mini-tool-icon bg-accent">
                         <i class="fas fa-landmark"></i>
                     </div>
-                    <h4 class="mini-tool-title">Loan Calculator</h4>
-                    <a href="loan-calculator.html" class="mini-tool-link">Use Tool →</a>
+                    <h4 class="mini-tool-title">Loan Comparison</h4>
+                    <p class="mini-tool-description">Compare different loan offers side by side</p>
+                    <a href="loan-comparison.html" class="mini-tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="mini-tool-card">
-                    <div class="mini-tool-icon">
+                    <div class="mini-tool-icon bg-primary">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h4 class="mini-tool-title">Savings Calculator</h4>
+                    <p class="mini-tool-description">Plan your savings with compound interest calculator</p>
+                    <a href="savings-calculator.html" class="mini-tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="mini-tool-card">
+                    <div class="mini-tool-icon bg-purple">
                         <i class="fas fa-receipt"></i>
                     </div>
                     <h4 class="mini-tool-title">Tax Calculator</h4>
-                    <a href="tax-calculator.html" class="mini-tool-link">Use Tool →</a>
+                    <p class="mini-tool-description">Calculate income tax based on your earnings</p>
+                    <a href="tax-calculator.html" class="mini-tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -753,7 +1344,7 @@
                 <div class="footer-logo">
                     <i class="fas fa-tools"></i> Ultimate Tools
                 </div>
-                <p class="footer-about">Ultimate Tools provides free, easy-to-use online tools that help you save time and be more productive in your daily tasks.</p>
+                <p class="footer-about">Ultimate Tools provides beautifully designed, user-friendly online tools that help you save time and be more productive in your daily tasks.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -765,24 +1356,24 @@
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../index.html#tools">All Tools</a></li>
-                    <li><a href="../index.html#about">About Us</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="../index.html#tools"><i class="fas fa-chevron-right"></i> All Tools</a></li>
+                    <li><a href="../index.html#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                    <li><a href="../index.html#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    <li><a href="../index.html#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="../index.html#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                 </ul>
             </div>
             
             <div class="footer-links">
                 <h4>Popular Tools</h4>
                 <ul>
-                    <li><a href="emi-calculator.html">EMI Calculator</a></li>
-                    <li><a href="currency-converter.html">Currency Converter</a></li>
-                    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
-                    <li><a href="password-generator.html">Password Generator</a></li>
-                    <li><a href="qr-code-generator.html">QR Code Generator</a></li>
-                    <li><a href="unit-converter.html">Unit Converter</a></li>
+                    <li><a href="emi-calculator.html"><i class="fas fa-chevron-right"></i> EMI Calculator</a></li>
+                    <li><a href="currency-converter.html"><i class="fas fa-chevron-right"></i> Currency Converter</a></li>
+                    <li><a href="bmi-calculator.html"><i class="fas fa-chevron-right"></i> BMI Calculator</a></li>
+                    <li><a href="password-generator.html"><i class="fas fa-chevron-right"></i> Password Generator</a></li>
+                    <li><a href="qr-code-generator.html"><i class="fas fa-chevron-right"></i> QR Code Generator</a></li>
+                    <li><a href="unit-converter.html"><i class="fas fa-chevron-right"></i> Unit Converter</a></li>
                 </ul>
             </div>
             
@@ -798,7 +1389,7 @@
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>123 Tools Street, Web City</p>
+                    <p>123 Tools Street, Web City, Internet State 10101</p>
                 </div>
             </div>
         </div>
@@ -810,15 +1401,28 @@
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script>
         // Mobile Navigation
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
         const navLinks = document.querySelectorAll('.nav-links li');
+        const overlay = document.querySelector('.overlay');
+        const body = document.body;
 
         burger.addEventListener('click', () => {
             // Toggle Nav
             nav.classList.toggle('nav-active');
+            
+            // Toggle Overlay
+            overlay.classList.toggle('active');
+            
+            // Toggle Body Scroll
+            if (nav.classList.contains('nav-active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
             
             // Animate Links
             navLinks.forEach((link, index) => {
@@ -833,80 +1437,217 @@
             burger.classList.toggle('toggle');
         });
 
+        // Close mobile menu when clicking on overlay
+        overlay.addEventListener('click', () => {
+            nav.classList.remove('nav-active');
+            overlay.classList.remove('active');
+            burger.classList.remove('toggle');
+            body.style.overflow = 'auto';
+            
+            navLinks.forEach(link => {
+                link.style.animation = '';
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                overlay.classList.remove('active');
+                burger.classList.remove('toggle');
+                body.style.overflow = 'auto';
+                
+                navLinks.forEach(link => {
+                    link.style.animation = '';
+                });
+            });
+        });
+
+        // Initialize Notyf for notifications
+        const notyf = new Notyf({
+            duration: 3000,
+            position: {
+                x: 'right',
+                y: 'top',
+            },
+            types: [
+                {
+                    type: 'success',
+                    background: '#10b981',
+                    icon: {
+                        className: 'fas fa-check-circle',
+                        tagName: 'i',
+                        color: 'white'
+                    }
+                },
+                {
+                    type: 'error',
+                    background: '#ef4444',
+                    icon: {
+                        className: 'fas fa-times-circle',
+                        tagName: 'i',
+                        color: 'white'
+                    }
+                }
+            ]
+        });
+
         // EMI Calculator Logic
         const loanAmountInput = document.getElementById('loan-amount');
+        const loanSlider = document.getElementById('loan-slider');
+        const loanDisplay = document.getElementById('loan-display');
+        
         const interestRateInput = document.getElementById('interest-rate');
+        const interestSlider = document.getElementById('interest-slider');
+        const interestDisplay = document.getElementById('interest-display');
+        
         const loanTenureInput = document.getElementById('loan-tenure');
         const loanTenureTypeSelect = document.getElementById('loan-tenure-type');
-        const interestSlider = document.getElementById('interest-slider');
-        const interestValue = document.getElementById('interest-value');
         const tenureSlider = document.getElementById('tenure-slider');
-        const tenureValue = document.getElementById('tenure-value');
+        const tenureDisplay = document.getElementById('tenure-display');
+        
         const emiForm = document.getElementById('emi-form');
         const resultsSection = document.getElementById('results-section');
         const monthlyEmiValue = document.getElementById('monthly-emi-value');
         const principalAmount = document.getElementById('principal-amount');
         const totalInterest = document.getElementById('total-interest');
         const totalAmount = document.getElementById('total-amount');
+        
         const amortizationToggle = document.getElementById('amortization-toggle');
         const amortizationTableContainer = document.getElementById('amortization-table-container');
         const amortizationBody = document.getElementById('amortization-body');
+        const tablePagination = document.getElementById('table-pagination');
+        
+        const btnPrint = document.getElementById('btn-print');
+        const btnShare = document.getElementById('btn-share');
+        const btnSave = document.getElementById('btn-save');
+
+        // Global variables for amortization table pagination
+        let currentPage = 1;
+        let rowsPerPage = 12;
+        let amortizationSchedule = [];
 
         // Format currency
         function formatCurrency(amount) {
-            return new Intl.NumberFormat('en-IN', { 
+            return new Intl.NumberFormat('en-US', { 
                 maximumFractionDigits: 0 
             }).format(amount);
         }
 
-        // Update range values
-        interestSlider.addEventListener('input', () => {
-            const value = interestSlider.value;
-            interestValue.textContent = `${value}%`;
-            interestRateInput.value = value;
+        // Update input fields and sliders
+        // Loan Amount
+        loanAmountInput.addEventListener('input', () => {
+            const value = loanAmountInput.value;
+            loanSlider.value = value;
+            loanDisplay.textContent = `$${formatCurrency(value)}`;
         });
 
+        loanSlider.addEventListener('input', () => {
+            const value = loanSlider.value;
+            loanAmountInput.value = value;
+            loanDisplay.textContent = `$${formatCurrency(value)}`;
+        });
+
+        // Interest Rate
         interestRateInput.addEventListener('input', () => {
             const value = interestRateInput.value;
             interestSlider.value = value;
-            interestValue.textContent = `${value}%`;
+            interestDisplay.textContent = `${value}%`;
+        });
+
+        interestSlider.addEventListener('input', () => {
+            const value = interestSlider.value;
+            interestRateInput.value = value;
+            interestDisplay.textContent = `${value}%`;
+        });
+
+        // Loan Tenure
+        loanTenureInput.addEventListener('input', () => {
+            const value = loanTenureInput.value;
+            const type = loanTenureTypeSelect.value;
+            
+            if (type === 'year') {
+                if (value > 30) {
+                    loanTenureInput.value = 30;
+                    tenureSlider.value = 30;
+                    tenureDisplay.textContent = `30 years`;
+                } else {
+                    tenureSlider.value = value;
+                    tenureDisplay.textContent = `${value} ${value === '1' ? 'year' : 'years'}`;
+                }
+            } else {
+                if (value > 360) {
+                    loanTenureInput.value = 360;
+                    tenureSlider.value = 30;
+                    tenureDisplay.textContent = `360 months`;
+                } else {
+                    tenureSlider.value = value / 12 > 30 ? 30 : value / 12;
+                    tenureDisplay.textContent = `${value} ${value === '1' ? 'month' : 'months'}`;
+                }
+            }
         });
 
         tenureSlider.addEventListener('input', () => {
             const value = tenureSlider.value;
             const type = loanTenureTypeSelect.value;
-            tenureValue.textContent = `${value} ${type === 'year' ? 'years' : 'months'}`;
-            loanTenureInput.value = value;
-        });
-
-        loanTenureInput.addEventListener('input', () => {
-            const value = loanTenureInput.value;
-            const type = loanTenureTypeSelect.value;
-            tenureSlider.value = value;
-            tenureValue.textContent = `${value} ${type === 'year' ? 'years' : 'months'}`;
+            
+            if (type === 'year') {
+                loanTenureInput.value = value;
+                tenureDisplay.textContent = `${value} ${value === '1' ? 'year' : 'years'}`;
+            } else {
+                const months = Math.round(value * 12);
+                loanTenureInput.value = months;
+                tenureDisplay.textContent = `${months} ${months === 1 ? 'month' : 'months'}`;
+            }
         });
 
         loanTenureTypeSelect.addEventListener('change', () => {
             const value = loanTenureInput.value;
             const type = loanTenureTypeSelect.value;
-            tenureValue.textContent = `${value} ${type === 'year' ? 'years' : 'months'}`;
             
-            // Adjust min/max values for the slider based on type
             if (type === 'year') {
                 tenureSlider.min = 1;
                 tenureSlider.max = 30;
-                loanTenureInput.min = 1;
-                loanTenureInput.max = 30;
-                if (loanTenureInput.value > 30) {
+                tenureSlider.step = 1;
+                
+                if (value > 360) {
                     loanTenureInput.value = 30;
                     tenureSlider.value = 30;
-                    tenureValue.textContent = '30 years';
+                    tenureDisplay.textContent = `30 years`;
+                } else {
+                    const years = Math.ceil(value / 12);
+                    if (years > 30) {
+                        loanTenureInput.value = 30;
+                        tenureSlider.value = 30;
+                        tenureDisplay.textContent = `30 years`;
+                    } else {
+                        loanTenureInput.value = years;
+                        tenureSlider.value = years;
+                        tenureDisplay.textContent = `${years} ${years === 1 ? 'year' : 'years'}`;
+                    }
                 }
             } else {
-                tenureSlider.min = 1;
-                tenureSlider.max = 360;
-                loanTenureInput.min = 1;
-                loanTenureInput.max = 360;
+                tenureSlider.min = 0.08;
+                tenureSlider.max = 30;
+                tenureSlider.step = 0.08;
+                
+                if (value > 30) {
+                    const months = value * 12;
+                    if (months > 360) {
+                        loanTenureInput.value = 360;
+                        tenureSlider.value = 30;
+                        tenureDisplay.textContent = `360 months`;
+                    } else {
+                        loanTenureInput.value = months;
+                        tenureSlider.value = value;
+                        tenureDisplay.textContent = `${months} months`;
+                    }
+                } else {
+                    const months = value * 12;
+                    loanTenureInput.value = months;
+                    tenureSlider.value = value;
+                    tenureDisplay.textContent = `${months} ${months === 1 ? 'month' : 'months'}`;
+                }
             }
         });
 
@@ -921,7 +1662,7 @@
             // EMI formula: P * r * (1 + r)^n / ((1 + r)^n - 1)
             const emi = principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
             
-            return emi;
+            return isNaN(emi) || !isFinite(emi) ? 0 : emi;
         }
 
         // Generate amortization schedule
@@ -940,6 +1681,7 @@
                 
                 schedule.push({
                     month: i,
+                    emi: emi,
                     principalPaid: principalPaid,
                     interest: interest,
                     balance: balance > 0 ? balance : 0
@@ -949,26 +1691,109 @@
             return schedule;
         }
 
-        // Display amortization table
-        function displayAmortizationTable(schedule) {
+        // Generate yearly payment data for chart
+        function generateYearlyPaymentData(schedule) {
+            const yearlyData = {};
+            
+            schedule.forEach((item, index) => {
+                const year = Math.ceil((index + 1) / 12);
+                
+                if (!yearlyData[year]) {
+                    yearlyData[year] = {
+                        principal: 0,
+                        interest: 0
+                    };
+                }
+                
+                yearlyData[year].principal += item.principalPaid;
+                yearlyData[year].interest += item.interest;
+            });
+            
+            return yearlyData;
+        }
+
+        // Display amortization table with pagination
+        function displayAmortizationTable() {
             amortizationBody.innerHTML = '';
             
-            schedule.forEach(item => {
+            // Calculate total pages
+            const totalPages = Math.ceil(amortizationSchedule.length / rowsPerPage);
+            
+            // Get current page data
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const currentPageData = amortizationSchedule.slice(start, end);
+            
+            // Add rows to table
+            currentPageData.forEach(item => {
                 const row = document.createElement('tr');
                 
                 row.innerHTML = `
-                    <td>${item.month}</td>
-                    <td>₹ ${formatCurrency(item.principalPaid.toFixed(2))}</td>
-                    <td>₹ ${formatCurrency(item.interest.toFixed(2))}</td>
-                    <td>₹ ${formatCurrency(item.balance.toFixed(2))}</td>
+                    <td style="text-align: center;">${item.month}</td>
+                    <td>$${formatCurrency(item.emi.toFixed(2))}</td>
+                    <td>$${formatCurrency(item.principalPaid.toFixed(2))}</td>
+                    <td>$${formatCurrency(item.interest.toFixed(2))}</td>
+                    <td>$${formatCurrency(item.balance.toFixed(2))}</td>
                 `;
                 
                 amortizationBody.appendChild(row);
             });
+            
+            // Create pagination
+            tablePagination.innerHTML = '';
+            
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.classList.add('page-btn-nav');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayAmortizationTable();
+                }
+            });
+            tablePagination.appendChild(prevBtn);
+            
+            // Page buttons
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            
+            if (endPage - startPage < 4 && totalPages > 5) {
+                startPage = Math.max(1, endPage - 4);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.classList.add('page-btn');
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    displayAmortizationTable();
+                });
+                tablePagination.appendChild(pageBtn);
+            }
+            
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.classList.add('page-btn-nav');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayAmortizationTable();
+                }
+            });
+            tablePagination.appendChild(nextBtn);
         }
 
-        // Loan chart
+        // Loan charts
         let loanChart = null;
+        let paymentChart = null;
 
         function updateLoanChart(principal, totalInterestAmount) {
             const ctx = document.getElementById('loan-chart').getContext('2d');
@@ -986,8 +1811,8 @@
                     datasets: [{
                         data: [principal, totalInterestAmount],
                         backgroundColor: [
-                            '#4361ee',
-                            '#f72585'
+                            '#6366f1',
+                            '#f43f5e'
                         ],
                         borderColor: [
                             '#ffffff',
@@ -998,10 +1823,17 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
+                                },
+                                padding: 15
+                            }
                         },
                         tooltip: {
                             callbacks: {
@@ -1010,10 +1842,124 @@
                                     const value = context.raw;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                     const percentage = Math.round((value / total) * 100);
-                                    return `${label}: ₹ ${formatCurrency(value)} (${percentage}%)`;
+                                    return `${label}: $${formatCurrency(value)} (${percentage}%)`;
+                                }
+                            },
+                            bodyFont: {
+                                family: "'Inter', sans-serif"
+                            },
+                            padding: 12
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        function updatePaymentChart(yearlyData) {
+            const ctx = document.getElementById('payment-chart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (paymentChart) {
+                paymentChart.destroy();
+            }
+            
+            const years = Object.keys(yearlyData);
+            const principalData = years.map(year => yearlyData[year].principal);
+            const interestData = years.map(year => yearlyData[year].interest);
+            
+            // Create new chart
+            paymentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: [
+                        {
+                            label: 'Principal',
+                            data: principalData,
+                            backgroundColor: '#6366f1',
+                            borderColor: '#6366f1',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Interest',
+                            data: interestData,
+                            backgroundColor: '#f43f5e',
+                            borderColor: '#f43f5e',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Year',
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            grid: {
+                                color: '#e2e8f0'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + formatCurrency(value);
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Amount',
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
                                 }
                             }
                         }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 12,
+                                    family: "'Inter', sans-serif"
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.dataset.label || '';
+                                    const value = context.raw;
+                                    return `${label}: $${formatCurrency(value)}`;
+                                }
+                            },
+                            bodyFont: {
+                                family: "'Inter', sans-serif"
+                            },
+                            padding: 12
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
                     }
                 }
             });
@@ -1028,39 +1974,33 @@
             const time = parseFloat(loanTenureInput.value);
             const timeUnit = loanTenureTypeSelect.value;
             
-            // Calculate EMI
-            const emi = calculateEMI(principal, rate, time, timeUnit);
-            const months = timeUnit === 'year' ? time * 12 : time;
-            const totalAmountPaid = emi * months;
-            const totalInterestAmount = totalAmountPaid - principal;
+            // Validate inputs
+            if (principal <= 0 || rate <= 0 || time <= 0) {
+                notyf.error('Please enter valid values for all fields');
+                return;
+            }
             
-            // Update UI
-            monthlyEmiValue.textContent = formatCurrency(emi.toFixed(0));
-            principalAmount.textContent = `₹ ${formatCurrency(principal)}`;
-            totalInterest.textContent = `₹ ${formatCurrency(totalInterestAmount.toFixed(0))}`;
-            totalAmount.textContent = `₹ ${formatCurrency(totalAmountPaid.toFixed(0))}`;
-            
-            // Generate amortization schedule
-            const schedule = generateAmortizationSchedule(principal, rate, time, timeUnit);
-            displayAmortizationTable(schedule);
-            
-            // Update chart
-            updateLoanChart(principal, totalInterestAmount);
-            
-            // Show results
-            resultsSection.style.display = 'block';
-        });
-
-        // Toggle amortization table
-        amortizationToggle.addEventListener('click', () => {
-            amortizationToggle.classList.toggle('active');
-            amortizationTableContainer.style.display = amortizationTableContainer.style.display === 'block' ? 'none' : 'block';
-        });
-
-        // Initialize with sample data
-        window.addEventListener('load', () => {
-            emiForm.dispatchEvent(new Event('submit'));
-        });
-    </script>
-</body>
-</html>
+            try {
+                // Calculate EMI
+                const emi = calculateEMI(principal, rate, time, timeUnit);
+                const months = timeUnit === 'year' ? time * 12 : time;
+                const totalAmountPaid = emi * months;
+                const totalInterestAmount = totalAmountPaid - principal;
+                
+                // Generate amortization schedule
+                amortizationSchedule = generateAmortizationSchedule(principal, rate, time, timeUnit);
+                
+                // Generate yearly payment data
+                const yearlyData = generateYearlyPaymentData(amortizationSchedule);
+                
+                // Update UI
+                monthlyEmiValue.textContent = formatCurrency(emi.toFixed(0));
+                principalAmount.textContent = `$${formatCurrency(principal)}`;
+                totalInterest.textContent = `$${formatCurrency(totalInterestAmount.toFixed(0))}`;
+                totalAmount.textContent = `$${formatCurrency(totalAmountPaid.toFixed(0))}`;
+                
+                // Reset pagination
+                currentPage = 1;
+                
+                // Display amortization table
+                display
