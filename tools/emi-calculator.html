@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator - Ultimate Tools</title>
+    <meta name="description" content="Calculate your loan EMI (Equated Monthly Installment) easily with our free EMI calculator. Plan your loan repayments and understand the total interest payable.">
+    <meta name="keywords" content="EMI calculator, loan calculator, home loan EMI, car loan EMI, monthly installment calculator">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 10px 15px;
+            border-radius: 30px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* Tool Hero Section */
+        .tool-hero {
+            background: linear-gradient(to right, rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .tool-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .tool-hero p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Tool Container */
+        .tool-container {
+            max-width: 1000px;
+            margin: -50px auto 80px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .tool-card {
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .tool-section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input[type="number"],
+        .form-group input[type="range"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input[type="number"]:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .range-container input[type="range"] {
+            flex-grow: 1;
+            margin-right: 15px;
+        }
+
+        .range-value {
+            min-width: 80px;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .btn-calculate {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .btn-calculate:hover {
+            background-color: #e5177b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Results Section */
+        .results-section {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .monthly-emi {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .loan-summary {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .summary-item {
+            flex-basis: calc(33.333% - 20px);
+            background-color: #f0f4ff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0 5px;
+        }
+
+        .summary-label {
+            color: var(--text-light);
+        }
+
+        /* Amortization Table */
+        .amortization-section {
+            margin-top: 40px;
+        }
+
+        .amortization-toggle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .amortization-toggle i {
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+
+        .amortization-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .amortization-table-container {
+            display: none;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .amortization-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .amortization-table th, .amortization-table td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .amortization-table th {
+            background-color: #f0f4ff;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .amortization-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            margin-top: 40px;
+        }
+
+        .chart-container {
+            height: 300px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* Other Tools Section */
+        .other-tools {
+            margin-top: 60px;
+        }
+
+        .other-tools h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: var(--text-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .mini-tool-card {
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .mini-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .mini-tool-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f4ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .mini-tool-icon i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .mini-tool-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .mini-tool-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mini-tool-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .footer-about {
+            margin-bottom: 20px;
+            max-width: 300px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4:after, .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            color: white;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                height: calc(100vh - 80px);
+                top: 80px;
+                background-color: var(--primary-color);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 1;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .nav-active {
+                transform: translateX(0%);
+            }
+
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .toggle .line2 {
+                opacity: 0;
+            }
+
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .tool-card {
+                padding: 25px;
+            }
+
+            .summary-item {
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tool-hero h1 {
+                font-size: 2rem;
+            }
+
+            .tool-section-title {
+                font-size: 1.5rem;
+            }
+
+            .monthly-emi {
+                font-size: 2rem;
+            }
+
+            .summary-value {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-tools"></i> Ultimate Tools
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#tools">Tools</a></li>
+                <li><a href="../index.html#about">About Us</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Hero Section -->
+    <section class="tool-hero">
+        <h1>EMI Calculator</h1>
+        <p>Calculate your Equated Monthly Installment (EMI) for any loan amount, interest rate, and loan tenure. Get detailed breakdowns of your loan repayment schedule.</p>
+    </section>
+
+    <!-- Tool Container -->
+    <div class="tool-container">
+        <!-- EMI Calculator Card -->
+        <div class="tool-card">
+            <h2 class="tool-section-title">Calculate Your EMI</h2>
+            
+            <form id="emi-form">
+                <div class="form-group">
+                    <label for="loan-amount">Loan Amount (₹)</label>
+                    <input type="number" id="loan-amount" min="1000" step="1000" value="1000000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="interest-rate">Interest Rate (% per annum)</label>
+                    <div class="range-container">
+                        <input type="range" id="interest-slider" min="1" max="30" step="0.1" value="10">
+                        <div class="range-value" id="interest-value">10%</div>
+                    </div>
+                    <input type="number" id="interest-rate" min="1" max="30" step="0.1" value="10" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loan-tenure">Loan Tenure</label>
+                    <div class="range-container">
+                        <input type="range" id="tenure-slider" min="1" max="30" value="15">
+                        <div class="range-value" id="tenure-value">15 years</div>
+                    </div>
+                    <select id="loan-tenure-type">
+                        <option value="year">Years</option>
+                        <option value="month">Months</option>
+                    </select>
+                    <input type="number" id="loan-tenure" min="1" max="30" value="15" required>
+                </div>
+                
+                <button type="submit" class="btn-calculate">Calculate EMI</button>
+            </form>
+            
+            <!-- Results Section -->
+            <div class="results-section" id="results-section">
+                <div class="results-header">
+                    <h3>Loan Summary</h3>
+                    <p>Here's a breakdown of your loan details</p>
+                </div>
+                
+                <div class="monthly-emi">
+                    ₹ <span id="monthly-emi-value">10,746</span>
+                </div>
+                
+                <div class="loan-summary">
+                    <div class="summary-item">
+                        <div class="summary-value" id="principal-amount">₹ 10,00,000</div>
+                        <div class="summary-label">Principal Amount</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-value" id="total-interest">₹ 9,34,235</div>
+                        <div class="summary-label">Total Interest</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-value" id="total-amount">₹ 19,34,235</div>
+                        <div class="summary-label">Total Amount</div>
+                    </div>
+                </div>
+                
+                <!-- Chart Section -->
+                <div class="chart-section">
+                    <canvas id="loan-chart"></canvas>
+                </div>
+                
+                <!-- Amortization Section -->
+                <div class="amortization-section">
+                    <button class="amortization-toggle" id="amortization-toggle">
+                        View Amortization Schedule <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="amortization-table-container" id="amortization-table-container">
+                        <table class="amortization-table" id="amortization-table">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="amortization-body">
+                                <!-- Will be filled by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other Tools Section -->
+        <div class="other-tools">
+            <h3>Other Useful Tools</h3>
+            
+            <div class="tools-grid">
+                <div class="mini-tool-card">
+                    <div class="mini-tool-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h4 class="mini-tool-title">Currency Converter</h4>
+                    <a href="currency-converter.html" class="mini-tool-link">Use Tool →</a>
+                </div>
+                
+                <div class="mini-tool-card">
+                    <div class="mini-tool-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h4 class="mini-tool-title">BMI Calculator</h4>
+                    <a href="bmi-calculator.html" class="mini-tool-link">Use Tool →</a>
+                </div>
+                
+                <div class="mini-tool-card">
+                    <div class="mini-tool-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h4 class="mini-tool-title">Loan Calculator</h4>
+                    <a href="loan-calculator.html" class="mini-tool-link">Use Tool →</a>
+                </div>
+                
+                <div class="mini-tool-card">
+                    <div class="mini-tool-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h4 class="mini-tool-title">Tax Calculator</h4>
+                    <a href="tax-calculator.html" class="mini-tool-link">Use Tool →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <i class="fas fa-tools"></i> Ultimate Tools
+                </div>
+                <p class="footer-about">Ultimate Tools provides free, easy-to-use online tools that help you save time and be more productive in your daily tasks.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#tools">All Tools</a></li>
+                    <li><a href="../index.html#about">About Us</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Popular Tools</h4>
+                <ul>
+                    <li><a href="emi-calculator.html">EMI Calculator</a></li>
+                    <li><a href="currency-converter.html">Currency Converter</a></li>
+                    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+                    <li><a href="password-generator.html">Password Generator</a></li>
+                    <li><a href="qr-code-generator.html">QR Code Generator</a></li>
+                    <li><a href="unit-converter.html">Unit Converter</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>contact@ultimatetools.com</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Tools Street, Web City</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Ultimate Tools. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Mobile Navigation
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+            // Toggle Nav
+            nav.classList.toggle('nav-active');
+            
+            // Animate Links
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // Burger Animation
+            burger.classList.toggle('toggle');
+        });
+
+        // EMI Calculator Logic
+        const loanAmountInput = document.getElementById('loan-amount');
+        const interestRateInput = document.getElementById('interest-rate');
+        const loanTenureInput = document.getElementById('loan-tenure');
+        const loanTenureTypeSelect = document.getElementById('loan-tenure-type');
+        const interestSlider = document.getElementById('interest-slider');
+        const interestValue = document.getElementById('interest-value');
+        const tenureSlider = document.getElementById('tenure-slider');
+        const tenureValue = document.getElementById('tenure-value');
+        const emiForm = document.getElementById('emi-form');
+        const resultsSection = document.getElementById('results-section');
+        const monthlyEmiValue = document.getElementById('monthly-emi-value');
+        const principalAmount = document.getElementById('principal-amount');
+        const totalInterest = document.getElementById('total-interest');
+        const totalAmount = document.getElementById('total-amount');
+        const amortizationToggle = document.getElementById('amortization-toggle');
+        const amortizationTableContainer = document.getElementById('amortization-table-container');
+        const amortizationBody = document.getElementById('amortization-body');
+
+        // Format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-IN', { 
+                maximumFractionDigits: 0 
+            }).format(amount);
+        }
+
+        // Update range values
+        interestSlider.addEventListener('input', () => {
+            const value = interestSlider.value;
+            interestValue.textContent = `${value}%`;
+            interestRateInput.value = value;
+        });
+
+        interestRateInput.addEventListener('input', () => {
+            const value = interestRateInput.value;
+            interestSlider.value = value;
+            interestValue.textContent = `${value}%`;
+        });
+
+        tenureSlider.addEventListener('input', () => {
+            const value = tenureSlider.value;
+            const type = loanTenureTypeSelect.value;
+            tenureValue.textContent = `${value} ${type === 'year' ? 'years' : 'months'}`;
+            loanTenureInput.value = value;
+        });
+
+        loanTenureInput.addEventListener('input', () => {
+            const value = loanTenureInput.value;
+            const type = loanTenureTypeSelect.value;
+            tenureSlider.value = value;
+            tenureValue.textContent = `${value} ${type === 'year' ? 'years' : 'months'}`;
+        });
+
+        loanTenureTypeSelect.addEventListener('change', () => {
+            const value = loanTenureInput.value;
+            const type = loanTenureTypeSelect.value;
+            tenureValue.textContent = `${value} ${type === 'year' ? 'years' : 'months'}`;
+            
+            // Adjust min/max values for the slider based on type
+            if (type === 'year') {
+                tenureSlider.min = 1;
+                tenureSlider.max = 30;
+                loanTenureInput.min = 1;
+                loanTenureInput.max = 30;
+                if (loanTenureInput.value > 30) {
+                    loanTenureInput.value = 30;
+                    tenureSlider.value = 30;
+                    tenureValue.textContent = '30 years';
+                }
+            } else {
+                tenureSlider.min = 1;
+                tenureSlider.max = 360;
+                loanTenureInput.min = 1;
+                loanTenureInput.max = 360;
+            }
+        });
+
+        // Calculate EMI
+        function calculateEMI(principal, rate, time, timeUnit) {
+            // Convert yearly rate to monthly
+            const monthlyRate = rate / (12 * 100);
+            
+            // Convert time to months
+            const months = timeUnit === 'year' ? time * 12 : time;
+            
+            // EMI formula: P * r * (1 + r)^n / ((1 + r)^n - 1)
+            const emi = principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+            
+            return emi;
+        }
+
+        // Generate amortization schedule
+        function generateAmortizationSchedule(principal, rate, time, timeUnit) {
+            const monthlyRate = rate / (12 * 100);
+            const months = timeUnit === 'year' ? time * 12 : time;
+            const emi = calculateEMI(principal, rate, time, timeUnit);
+            
+            let balance = principal;
+            const schedule = [];
+            
+            for (let i = 1; i <= months; i++) {
+                const interest = balance * monthlyRate;
+                const principalPaid = emi - interest;
+                balance -= principalPaid;
+                
+                schedule.push({
+                    month: i,
+                    principalPaid: principalPaid,
+                    interest: interest,
+                    balance: balance > 0 ? balance : 0
+                });
+            }
+            
+            return schedule;
+        }
+
+        // Display amortization table
+        function displayAmortizationTable(schedule) {
+            amortizationBody.innerHTML = '';
+            
+            schedule.forEach(item => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${item.month}</td>
+                    <td>₹ ${formatCurrency(item.principalPaid.toFixed(2))}</td>
+                    <td>₹ ${formatCurrency(item.interest.toFixed(2))}</td>
+                    <td>₹ ${formatCurrency(item.balance.toFixed(2))}</td>
+                `;
+                
+                amortizationBody.appendChild(row);
+            });
+        }
+
+        // Loan chart
+        let loanChart = null;
+
+        function updateLoanChart(principal, totalInterestAmount) {
+            const ctx = document.getElementById('loan-chart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (loanChart) {
+                loanChart.destroy();
+            }
+            
+            // Create new chart
+            loanChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Principal', 'Interest'],
+                    datasets: [{
+                        data: [principal, totalInterestAmount],
+                        backgroundColor: [
+                            '#4361ee',
+                            '#f72585'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ₹ ${formatCurrency(value)} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Form submission
+        emiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const principal = parseFloat(loanAmountInput.value);
+            const rate = parseFloat(interestRateInput.value);
+            const time = parseFloat(loanTenureInput.value);
+            const timeUnit = loanTenureTypeSelect.value;
+            
+            // Calculate EMI
+            const emi = calculateEMI(principal, rate, time, timeUnit);
+            const months = timeUnit === 'year' ? time * 12 : time;
+            const totalAmountPaid = emi * months;
+            const totalInterestAmount = totalAmountPaid - principal;
+            
+            // Update UI
+            monthlyEmiValue.textContent = formatCurrency(emi.toFixed(0));
+            principalAmount.textContent = `₹ ${formatCurrency(principal)}`;
+            totalInterest.textContent = `₹ ${formatCurrency(totalInterestAmount.toFixed(0))}`;
+            totalAmount.textContent = `₹ ${formatCurrency(totalAmountPaid.toFixed(0))}`;
+            
+            // Generate amortization schedule
+            const schedule = generateAmortizationSchedule(principal, rate, time, timeUnit);
+            displayAmortizationTable(schedule);
+            
+            // Update chart
+            updateLoanChart(principal, totalInterestAmount);
+            
+            // Show results
+            resultsSection.style.display = 'block';
+        });
+
+        // Toggle amortization table
+        amortizationToggle.addEventListener('click', () => {
+            amortizationToggle.classList.toggle('active');
+            amortizationTableContainer.style.display = amortizationTableContainer.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Initialize with sample data
+        window.addEventListener('load', () => {
+            emiForm.dispatchEvent(new Event('submit'));
+        });
+    </script>
+</body>
+</html>
