@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Tools - World's Best Online Tools</title>
-    <meta name="description" content="Ultimate Tools website is a collection of the world's best and most useful online tools. EMI Calculator, Currency Converter, BMI Calculator, Password Generator, and much more!">
-    <meta name="keywords" content="online tools, EMI calculator, currency converter, BMI calculator, password generator, QR code generator">
+    <title>Ultimate Tools - Beautiful & User-Friendly Online Tools</title>
+    <meta name="description" content="Ultimate Tools offers the world's most beautiful and user-friendly online calculators and tools. Free, easy to use, and designed for clarity.">
+    <meta name="keywords" content="online tools, user-friendly tools, beautiful calculators, EMI calculator, currency converter">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --accent-color: #f72585;
-            --background-color: #f8f9fa;
+            --primary-color: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary-color: #14b8a6;
+            --accent-color: #f43f5e;
+            --background-color: #f9fafb;
             --card-color: #ffffff;
-            --text-color: #333333;
-            --text-light: #666666;
+            --text-color: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --border-radius-sm: 8px;
             --border-radius: 12px;
-            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --border-radius-lg: 16px;
+            --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --transition: all 0.3s ease;
         }
 
@@ -30,7 +42,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
@@ -40,15 +52,21 @@
             overflow-x: hidden;
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
         /* Navigation */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: #ffffff;
+            color: var(--text-color);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .navbar {
@@ -61,17 +79,24 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: white;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--primary-dark);
         }
 
         .logo i {
             margin-right: 10px;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -80,20 +105,22 @@
         }
 
         .nav-links li {
-            margin-left: 20px;
+            margin-left: 5px;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
             padding: 10px 15px;
-            border-radius: 30px;
+            border-radius: 8px;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .burger {
@@ -104,74 +131,122 @@
         .burger div {
             width: 25px;
             height: 3px;
-            background-color: white;
+            background-color: var(--text-color);
             margin: 5px;
             transition: var(--transition);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(to right, rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
-            height: 500px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.1)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') no-repeat center center/cover;
+            min-height: 520px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
-            padding: 0 20px;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInDown 1s;
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
-            margin-bottom: 30px;
+            margin: 0 auto 30px;
+            color: var(--text-color);
+            animation: fadeInUp 1s;
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--accent-color);
+            background-color: var(--primary-color);
             color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 14px 32px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
         }
 
         .btn:hover {
+            background-color: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
+        }
+
+        .btn-accent:hover {
+            background-color: #e11d48;
+            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
         }
 
         /* Tools Section */
         .tools-section {
             max-width: 1200px;
-            margin: -80px auto 50px;
+            margin: 80px auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 10;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
         }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
         }
 
         .tool-card {
@@ -181,103 +256,179 @@
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             position: relative;
+            border: 1px solid var(--border-color);
         }
 
         .tool-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--primary-light);
         }
 
         .tool-icon {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        .bg-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        }
+
+        .bg-secondary {
+            background: linear-gradient(135deg, var(--secondary-color), #0d9488);
+        }
+
+        .bg-accent {
+            background: linear-gradient(135deg, var(--accent-color), #be123c);
+        }
+
+        .bg-purple {
+            background: linear-gradient(135deg, #a855f7, #7e22ce);
+        }
+
+        .bg-orange {
+            background: linear-gradient(135deg, #f97316, #c2410c);
+        }
+
+        .bg-pink {
+            background: linear-gradient(135deg, #ec4899, #be185d);
         }
 
         .tool-content {
-            padding: 25px;
+            padding: 30px;
         }
 
         .tool-title {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--primary-color);
+            color: var(--text-color);
         }
 
         .tool-description {
             color: var(--text-light);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             min-height: 80px;
         }
 
         .tool-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             color: var(--primary-color);
-            font-weight: bold;
+            font-weight: 600;
             text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .tool-link i {
+            margin-left: 8px;
             transition: var(--transition);
         }
 
         .tool-link:hover {
-            color: var(--accent-color);
+            color: var(--primary-dark);
         }
 
-        /* Featured Section */
-        .featured-section {
-            background: linear-gradient(135deg, #6610f2, #6f42c1);
-            padding: 80px 20px;
-            color: white;
-            text-align: center;
+        .tool-link:hover i {
+            transform: translateX(5px);
         }
 
-        .featured-content {
-            max-width: 800px;
+        /* Features Section */
+        .features-section {
+            background-color: #ffffff;
+            padding: 100px 0;
+        }
+
+        .features-container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .featured-title {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .featured-description {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            font-size: 1rem;
         }
 
         /* Testimonials Section */
         .testimonials {
             max-width: 1200px;
-            margin: 80px auto;
+            margin: 100px auto;
             padding: 0 20px;
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
+            margin-top: 50px;
         }
 
         .testimonial-card {
             background-color: var(--card-color);
             border-radius: var(--border-radius);
-            padding: 30px;
+            padding: 35px;
             box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--primary-light);
+        }
+
+        .testimonial-rating {
+            color: #facc15;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
         }
 
         .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--text-light);
+            margin-bottom: 25px;
+            color: var(--text-color);
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         .testimonial-author {
@@ -286,11 +437,12 @@
         }
 
         .author-image {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             overflow: hidden;
             margin-right: 15px;
+            border: 3px solid #f1f5f9;
         }
 
         .author-image img {
@@ -299,8 +451,14 @@
             object-fit: cover;
         }
 
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
         .author-name {
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--text-color);
         }
 
         .author-title {
@@ -308,11 +466,96 @@
             font-size: 0.9rem;
         }
 
+        /* FAQ Section */
+        .faq-section {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .accordion {
+            margin-top: 50px;
+        }
+
+        .accordion-item {
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background-color: #f8fafc;
+        }
+
+        .accordion-title {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .accordion-icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-body {
+            padding: 0 25px 20px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
         /* Footer */
         footer {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 60px 0 20px;
+            background-color: #1e293b;
+            color: #f1f5f9;
+            padding: 80px 0 30px;
         }
 
         .footer-content {
@@ -330,6 +573,8 @@
             font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 20px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
         }
 
         .footer-logo i {
@@ -338,14 +583,18 @@
         }
 
         .footer-about {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             max-width: 300px;
+            color: #cbd5e1;
+            line-height: 1.7;
         }
 
         .footer-links h4, .footer-contact h4 {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-size: 1.3rem;
+            color: white;
         }
 
         .footer-links h4:after, .footer-contact h4:after {
@@ -353,9 +602,9 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
-            background-color: var(--accent-color);
+            background-color: var(--primary-color);
         }
 
         .footer-links ul {
@@ -363,89 +612,165 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: #ccc;
+            color: #cbd5e1;
             text-decoration: none;
             transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 0.7rem;
         }
 
         .footer-links a:hover {
             color: white;
-            padding-left: 5px;
+            transform: translateX(5px);
         }
 
         .contact-info {
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
 
         .contact-info i {
-            margin-right: 10px;
+            margin-right: 15px;
             font-size: 1.2rem;
-            color: var(--accent-color);
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .contact-info p {
+            color: #cbd5e1;
+            line-height: 1.6;
         }
 
         .social-icons {
             display: flex;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .social-icons a {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background-color: #333;
+            background-color: #334155;
             color: white;
-            margin-right: 10px;
+            margin-right: 12px;
             transition: var(--transition);
+            font-size: 1.1rem;
         }
 
         .social-icons a:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 40px;
-            margin-top: 40px;
-            border-top: 1px solid #333;
+            margin-top: 60px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            z-index: 99;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Animation Classes */
+        .fadeInUp {
+            animation: fadeInUp 1s;
+        }
+
+        .fadeInDown {
+            animation: fadeInDown 1s;
+        }
+
+        .fadeInLeft {
+            animation: fadeInLeft 1s;
+        }
+
+        .fadeInRight {
+            animation: fadeInRight 1s;
         }
 
         /* Responsive Styles */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.2rem;
             }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .cta-title {
+                font-size: 2.4rem;
+            }
+        }
 
+        @media (max-width: 768px) {
             .nav-links {
-                position: absolute;
+                position: fixed;
                 right: 0;
-                height: calc(100vh - 80px);
-                top: 80px;
-                background-color: var(--primary-color);
+                height: 100vh;
+                top: 0;
+                background-color: white;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
+                justify-content: center;
+                width: 70%;
                 transform: translateX(100%);
                 transition: transform 0.5s ease-in;
-                z-index: 1;
+                z-index: 1001;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
             }
 
             .nav-links li {
-                margin: 20px 0;
+                margin: 15px 0;
             }
 
             .burger {
                 display: block;
+                z-index: 1002;
             }
 
             .nav-active {
@@ -463,27 +788,65 @@
             .toggle .line3 {
                 transform: rotate(45deg) translate(-5px, -6px);
             }
-
-            .featured-title {
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
                 font-size: 2.2rem;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
             }
         }
 
         @media (max-width: 480px) {
-            .hero {
-                height: 400px;
-            }
-
             .hero h1 {
                 font-size: 2rem;
             }
-
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
             .section-title {
                 font-size: 1.8rem;
             }
-
-            .featured-title {
+            
+            .cta-title {
                 font-size: 1.8rem;
+            }
+            
+            .cta-description {
+                font-size: 1rem;
+            }
+            
+            .tool-title {
+                font-size: 1.3rem;
+            }
+            
+            .feature-title {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -498,7 +861,9 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#tools">Tools</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="burger">
@@ -507,218 +872,342 @@
                 <div class="line3"></div>
             </div>
         </nav>
+        <div class="overlay"></div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>World's Best Online Tools</h1>
-        <p>Save time and boost your productivity by using our advanced online tools. All tools are free to use and accessible on any device.</p>
-        <a href="#tools" class="btn">View Tools</a>
+        <div class="hero-content">
+            <h1 class="fadeInDown">Beautiful & User-Friendly Tools</h1>
+            <p class="fadeInUp">Discover our collection of beautifully designed online tools that make complex calculations simple and enjoyable. All tools are free and optimized for the best user experience.</p>
+            <a href="#tools" class="btn fadeInUp">Explore Tools</a>
+        </div>
     </section>
 
     <!-- Tools Section -->
     <section id="tools" class="tools-section">
-        <h2 class="section-title">Our Top Tools</h2>
+        <div class="section-header">
+            <h2 class="section-title">Our Premium Tools</h2>
+            <p class="section-description">Simple, powerful, and beautifully designed tools to help you with daily tasks and complex calculations.</p>
+        </div>
         
         <div class="tools-grid">
             <!-- EMI Calculator -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp">
+                <div class="tool-icon bg-primary">
                     <i class="fas fa-calculator"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">EMI Calculator</h3>
-                    <p class="tool-description">Calculate monthly EMI for your loans and help plan your loan repayments effectively.</p>
-                    <a href="tools/emi-calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Calculate your loan EMI with interactive charts and detailed payment breakdowns for better financial planning.</p>
+                    <a href="tools/emi-calculator.html" class="tool-link">Use Calculator <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- Currency Converter -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.1s;">
+                <div class="tool-icon bg-secondary">
                     <i class="fas fa-exchange-alt"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">Currency Converter</h3>
-                    <p class="tool-description">Easily convert between different currencies with real-time exchange rates.</p>
-                    <a href="tools/currency-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Convert between currencies with real-time exchange rates, historical charts, and rate alerts.</p>
+                    <a href="tools/currency-converter.html" class="tool-link">Convert Currency <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- BMI Calculator -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.2s;">
+                <div class="tool-icon bg-accent">
                     <i class="fas fa-weight"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">BMI Calculator</h3>
-                    <p class="tool-description">Calculate your Body Mass Index (BMI) and understand your health status.</p>
-                    <a href="tools/bmi-calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Calculate your Body Mass Index with visual health indicators and personalized recommendations.</p>
+                    <a href="tools/bmi-calculator.html" class="tool-link">Calculate BMI <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- Age Calculator -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.3s;">
+                <div class="tool-icon bg-purple">
                     <i class="fas fa-birthday-cake"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">Age Calculator</h3>
-                    <p class="tool-description">Calculate your exact age in years, months, weeks, days, and hours.</p>
-                    <a href="tools/age-calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Calculate your exact age in years, months, weeks, days, and even hours with beautiful visualizations.</p>
+                    <a href="tools/age-calculator.html" class="tool-link">Calculate Age <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- Password Generator -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.4s;">
+                <div class="tool-icon bg-pink">
                     <i class="fas fa-key"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">Password Generator</h3>
-                    <p class="tool-description">Create strong and secure passwords to keep your online accounts safe.</p>
-                    <a href="tools/password-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Create strong, secure passwords with customizable options and visual strength indicators.</p>
+                    <a href="tools/password-generator.html" class="tool-link">Generate Password <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- QR Code Generator -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.5s;">
+                <div class="tool-icon bg-orange">
                     <i class="fas fa-qrcode"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">QR Code Generator</h3>
-                    <p class="tool-description">Easily create QR codes for any text, link, or contact information.</p>
-                    <a href="tools/qr-code-generator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Create customizable QR codes for URLs, text, contact information, and more with instant preview.</p>
+                    <a href="tools/qr-code-generator.html" class="tool-link">Create QR Code <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- Unit Converter -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.1s;">
+                <div class="tool-icon bg-primary">
                     <i class="fas fa-ruler-combined"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">Unit Converter</h3>
-                    <p class="tool-description">Convert between different units of measurement for length, weight, volume, and more.</p>
-                    <a href="tools/unit-converter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Convert between different units of measurement with an intuitive interface and instant results.</p>
+                    <a href="tools/unit-converter.html" class="tool-link">Convert Units <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- Word Counter -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.2s;">
+                <div class="tool-icon bg-secondary">
                     <i class="fas fa-font"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">Word Counter</h3>
-                    <p class="tool-description">Count the number of words, characters, sentences, and paragraphs in your text.</p>
-                    <a href="tools/word-counter.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Count words, characters, sentences, and paragraphs with real-time analysis and reading statistics.</p>
+                    <a href="tools/word-counter.html" class="tool-link">Count Words <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
             <!-- Color Picker -->
-            <div class="tool-card">
-                <div class="tool-icon">
+            <div class="tool-card fadeInUp" style="animation-delay: 0.3s;">
+                <div class="tool-icon bg-accent">
                     <i class="fas fa-palette"></i>
                 </div>
                 <div class="tool-content">
                     <h3 class="tool-title">Color Picker</h3>
-                    <p class="tool-description">Select and convert colors between different formats (HEX, RGB, HSL).</p>
-                    <a href="tools/color-picker.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Loan Calculator -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-landmark"></i>
-                </div>
-                <div class="tool-content">
-                    <h3 class="tool-title">Loan Calculator</h3>
-                    <p class="tool-description">Calculate loan payments, interest rates, loan terms, and total cost of loans.</p>
-                    <a href="tools/loan-calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Tax Calculator -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-receipt"></i>
-                </div>
-                <div class="tool-content">
-                    <h3 class="tool-title">Tax Calculator</h3>
-                    <p class="tool-description">Calculate income tax, GST, VAT, and other taxes based on your income and expenses.</p>
-                    <a href="tools/tax-calculator.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            
-            <!-- Image Editor -->
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <i class="fas fa-image"></i>
-                </div>
-                <div class="tool-content">
-                    <h3 class="tool-title">Image Editor</h3>
-                    <p class="tool-description">Edit and enhance your images with filters, cropping, resizing, and more.</p>
-                    <a href="tools/image-editor.html" class="tool-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                    <p class="tool-description">Select and convert colors between formats with visual palettes and color harmony suggestions.</p>
+                    <a href="tools/color-picker.html" class="tool-link">Pick Colors <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Section -->
-    <section class="featured-section">
-        <div class="featured-content">
-            <h2 class="featured-title">Why Choose Our Tools?</h2>
-            <p class="featured-description">Our tools are designed with simplicity and efficiency in mind. They are completely free to use, require no sign-up, and work seamlessly across all devices.</p>
-            <a href="#tools" class="btn">Try Now</a>
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Our Tools?</h2>
+                <p class="section-description">Our tools are designed with the user in mind, offering an exceptional experience that makes complex tasks simple.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fadeInUp">
+                    <div class="feature-icon bg-primary">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">All calculations happen instantly, with no page reloads, providing a seamless experience.</p>
+                </div>
+                
+                <div class="feature-card fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="feature-icon bg-secondary">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Fully Responsive</h3>
+                    <p class="feature-description">Our tools work perfectly on all devices - from smartphones to desktop computers.</p>
+                </div>
+                
+                <div class="feature-card fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="feature-icon bg-accent">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-title">Visual Results</h3>
+                    <p class="feature-description">Beautiful charts and visualizations help you understand the data at a glance.</p>
+                </div>
+                
+                <div class="feature-card fadeInUp" style="animation-delay: 0.3s;">
+                    <div class="feature-icon bg-purple">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">Your data never leaves your device - all calculations happen in your browser.</p>
+                </div>
+                
+                <div class="feature-card fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="feature-icon bg-orange">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="feature-title">Export Results</h3>
+                    <p class="feature-description">Save your results as PDF, image, or CSV for easy sharing and reference.</p>
+                </div>
+                
+                <div class="feature-card fadeInUp" style="animation-delay: 0.5s;">
+                    <div class="feature-icon bg-pink">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Regular Updates</h3>
+                    <p class="feature-description">We constantly improve our tools based on user feedback and the latest technologies.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="about" class="testimonials">
-        <h2 class="section-title">What Users Say</h2>
+    <section id="testimonials" class="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">What Users Say</h2>
+            <p class="section-description">Don't just take our word for it - hear from people who use our tools every day.</p>
+        </div>
         
         <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"I've been using the EMI calculator tool for all my loan planning, and it's simply the best I've ever used. Accurate, easy to understand, and provides all the information I need."</p>
+            <div class="testimonial-card fadeInUp">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The EMI calculator is by far the best I've used. The interactive charts and payment schedule breakdown make loan planning so much clearer. I love how easy it is to adjust parameters and see results instantly."</p>
                 <div class="testimonial-author">
                     <div class="author-image">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
                     </div>
-                    <div>
+                    <div class="author-info">
                         <p class="author-name">John Smith</p>
                         <p class="author-title">Financial Advisor</p>
                     </div>
                 </div>
             </div>
             
-            <div class="testimonial-card">
-                <p class="testimonial-text">"The password generator is a lifesaver for someone like me who needs secure passwords for multiple accounts. It's fast, easy to use, and generates truly secure passwords."</p>
+            <div class="testimonial-card fadeInUp" style="animation-delay: 0.1s;">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"I've tried many password generators, but this one stands out. The visual strength indicator and customization options are perfect. I particularly appreciate the password memory tips that come with each generated password."</p>
                 <div class="testimonial-author">
                     <div class="author-image">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Wilson">
                     </div>
-                    <div>
+                    <div class="author-info">
                         <p class="author-name">Emma Wilson</p>
                         <p class="author-title">IT Professional</p>
                     </div>
                 </div>
             </div>
             
-            <div class="testimonial-card">
-                <p class="testimonial-text">"I use the currency converter daily for my international business. It's accurate, up-to-date, and much more user-friendly than any other converter I've tried."</p>
+            <div class="testimonial-card fadeInUp" style="animation-delay: 0.2s;">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The currency converter is a game-changer for my international business. The historical rate charts and rate alerts save me time and money. It's now my go-to tool for all currency conversions."</p>
                 <div class="testimonial-author">
                     <div class="author-image">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael Chang">
                     </div>
-                    <div>
+                    <div class="author-info">
                         <p class="author-name">Michael Chang</p>
                         <p class="author-title">Business Owner</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-description">Find answers to common questions about our tools.</p>
+        </div>
+        
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="accordion-title">Are these tools really free to use?</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Yes, all of our tools are completely free to use. We believe in providing high-quality tools that are accessible to everyone without any hidden fees or subscription costs.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="accordion-title">Do I need to create an account to use the tools?</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        No, you don't need to create an account or sign up to use any of our tools. Simply visit the tool page and start using it right away without any registration or login.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="accordion-title">Is my data safe when using these tools?</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Absolutely. All calculations happen directly in your browser, and we don't store or collect any of your personal data. Your information never leaves your device, ensuring complete privacy and security.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="accordion-title">Can I use these tools on my mobile device?</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Yes, all our tools are fully responsive and work perfectly on smartphones, tablets, and desktop computers. The interface automatically adjusts to provide the best experience on any screen size.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="accordion-title">How accurate are the calculations?</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Our tools use industry-standard formulas and algorithms to ensure the highest level of accuracy. For financial tools like the EMI calculator, we use the same formulas used by financial institutions worldwide.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Try Our Tools?</h2>
+            <p class="cta-description">Explore our collection of beautifully designed tools and start making your life easier today. No sign-up required, just click and use!</p>
+            <a href="#tools" class="btn btn-accent">Get Started Now</a>
         </div>
     </section>
 
@@ -729,7 +1218,7 @@
                 <div class="footer-logo">
                     <i class="fas fa-tools"></i> Ultimate Tools
                 </div>
-                <p class="footer-about">Ultimate Tools provides free, easy-to-use online tools that help you save time and be more productive in your daily tasks.</p>
+                <p class="footer-about">Ultimate Tools provides beautifully designed, user-friendly online tools that help you save time and be more productive in your daily tasks.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -741,24 +1230,24 @@
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#tools">All Tools</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#tools"><i class="fas fa-chevron-right"></i> All Tools</a></li>
+                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                 </ul>
             </div>
             
             <div class="footer-links">
                 <h4>Popular Tools</h4>
                 <ul>
-                    <li><a href="tools/emi-calculator.html">EMI Calculator</a></li>
-                    <li><a href="tools/currency-converter.html">Currency Converter</a></li>
-                    <li><a href="tools/bmi-calculator.html">BMI Calculator</a></li>
-                    <li><a href="tools/password-generator.html">Password Generator</a></li>
-                    <li><a href="tools/qr-code-generator.html">QR Code Generator</a></li>
-                    <li><a href="tools/unit-converter.html">Unit Converter</a></li>
+                    <li><a href="tools/emi-calculator.html"><i class="fas fa-chevron-right"></i> EMI Calculator</a></li>
+                    <li><a href="tools/currency-converter.html"><i class="fas fa-chevron-right"></i> Currency Converter</a></li>
+                    <li><a href="tools/bmi-calculator.html"><i class="fas fa-chevron-right"></i> BMI Calculator</a></li>
+                    <li><a href="tools/password-generator.html"><i class="fas fa-chevron-right"></i> Password Generator</a></li>
+                    <li><a href="tools/qr-code-generator.html"><i class="fas fa-chevron-right"></i> QR Code Generator</a></li>
+                    <li><a href="tools/unit-converter.html"><i class="fas fa-chevron-right"></i> Unit Converter</a></li>
                 </ul>
             </div>
             
@@ -774,7 +1263,7 @@
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>123 Tools Street, Web City</p>
+                    <p>123 Tools Street, Web City, Internet State 10101</p>
                 </div>
             </div>
         </div>
@@ -784,16 +1273,33 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- JavaScript -->
     <script>
         // Mobile Navigation
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
         const navLinks = document.querySelectorAll('.nav-links li');
+        const overlay = document.querySelector('.overlay');
+        const body = document.body;
 
         burger.addEventListener('click', () => {
             // Toggle Nav
             nav.classList.toggle('nav-active');
+            
+            // Toggle Overlay
+            overlay.classList.toggle('active');
+            
+            // Toggle Body Scroll
+            if (nav.classList.contains('nav-active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
             
             // Animate Links
             navLinks.forEach((link, index) => {
@@ -808,6 +1314,32 @@
             burger.classList.toggle('toggle');
         });
 
+        // Close mobile menu when clicking on overlay
+        overlay.addEventListener('click', () => {
+            nav.classList.remove('nav-active');
+            overlay.classList.remove('active');
+            burger.classList.remove('toggle');
+            body.style.overflow = 'auto';
+            
+            navLinks.forEach(link => {
+                link.style.animation = '';
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                overlay.classList.remove('active');
+                burger.classList.remove('toggle');
+                body.style.overflow = 'auto';
+                
+                navLinks.forEach(link => {
+                    link.style.animation = '';
+                });
+            });
+        });
+
         // Scroll to section
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -818,6 +1350,66 @@
                 });
             });
         });
+
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.parentElement;
+                const accordionContent = header.nextElementSibling;
+                const accordionIcon = header.querySelector('.accordion-icon');
+                
+                // Toggle active class
+                accordionIcon.classList.toggle('active');
+                
+                // Toggle content
+                if (accordionIcon.classList.contains('active')) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                } else {
+                    accordionContent.style.maxHeight = '0';
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animation on Scroll
+        const animateElements = document.querySelectorAll('.fadeInUp, .fadeInDown, .fadeInLeft, .fadeInRight');
+        
+        const animateOnScroll = () => {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 50) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
